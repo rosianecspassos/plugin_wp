@@ -72,7 +72,16 @@ class DashboardController
                 <a href="?secao=home" style="color:#fff; display:block; margin-bottom:10px;">📄 Home</a>
                 <a href="?secao=sobre" style="color:#fff; display:block; margin-bottom:10px;">📄 Sobre</a>
                 <a href="?secao=servicos" style="color:#fff; display:block; margin-bottom:10px;">📄 Serviços</a>
+            
+                
                 <hr>
+               <!--Adiciona o link para form-idiomas.php-->
+                <a href="?secao=idiomas" style="color:#fff; display:block; margin-bottom:10px;">🌐 Idiomas</a >
+
+                
+
+             
+  
                 <a href="<?php echo esc_url(wp_logout_url(home_url('/login'))); ?>" style="color:#ff7675;">Sair</a>
             </div>
 
@@ -84,6 +93,8 @@ class DashboardController
 
                 if ($secao === 'dashboard') {
                     echo '<h2>Olá, ' . esc_html($user->display_name) . '!</h2><p>Selecione uma página ao lado para editar o conteúdo diretamente por aqui.</p>';
+                } elseif ($secao === 'idiomas') {
+                    echo do_shortcode('[sistema_idiomas]');
                 } else {
                     $this->generate_dynamic_editor($secao);
                 }
