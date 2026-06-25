@@ -7,15 +7,16 @@ if (!defined('ABSPATH')) {
     <?php if (empty($idiomas)): ?>
         <p style="background:#f3f4f6;color:#6b7280;padding:16px;border-radius:10px;text-align:center;">Nenhum idioma encontrado.</p>
     <?php else: ?>
-        <?php foreach ($idiomas as $idioma): ?>
-            <?php
-                $raio = 72;
-                $espessura = 16;
-                $circunferencia = 2 * pi() * $raio;
-                $offset = $circunferencia - ($idioma['nivel'] / 100) * $circunferencia;
-                $cor = $this->obter_cor(intval($idioma['nivel']));
-            ?>
-            <div style="margin-bottom:28px;display:flex;justify-content:center;">
+        <div style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:50px;">
+            <?php foreach ($idiomas as $idioma): ?>
+                <?php
+                    $raio = 72;
+                    $espessura = 16;
+                    $circunferencia = 2 * pi() * $raio;
+                    $offset = $circunferencia - ($idioma['nivel'] / 100) * $circunferencia;
+                    $cor = $this->obter_cor(intval($idioma['nivel']));
+                    $nivel_texto = $this->obter_nivel_texto(intval($idioma['nivel']));
+                ?>
                 <div style="position:relative;width:180px;height:180px;">
                     <svg width="180" height="180" viewBox="0 0 180 180">
                         <circle
@@ -43,11 +44,11 @@ if (!defined('ABSPATH')) {
                         />
                     </svg>
                     <div class="idioma-centro" style="position:absolute;top:50%;left:50%;transform:translate(-50%, -50%);text-align:center;">
-                        <div style="font-size:18px;font-weight:700;color:#111827;"><?php echo esc_html($idioma['nivel']); ?>%</div>
+                        <div style="font-size:16px;font-weight:700;color:#111827;"><?php echo esc_html($nivel_texto); ?></div>
                         <div style="font-size:14px;color:#4b5563;"><?php echo esc_html($idioma['nome']); ?></div>
                     </div>
                 </div>
-            </div>
-        <?php endforeach; ?>
+            <?php endforeach; ?>
+        </div>
     <?php endif; ?>
 </div>
